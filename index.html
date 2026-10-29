@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="JavaScript Mastery — SMIT Batch 22 Complete Assignment Solutions. 27 questions covering JavaScript fundamentals, conditions, and logical operators." />
+<title>JavaScript Mastery — SMIT Batch 22 | Assignment Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   JAVASCRIPT MASTERY — ULTRA-LUXURY 3D ASSIGNMENTS WEBSITE
+   Palette: Obsidian / Midnight / Champagne Gold / Metallic Gold / Emerald / Ivory
+   ============================================================ */
+
+:root{
+  --obsidian:#070707;
+  --midnight:#0B0B0F;
+  --gold:#D4AF37;
+  --gold-2:#F3D98B;
+  --emerald:#073D32;
+  --ivory:#F7F2E8;
+  --ink:#0d0d12;
+  --panel:rgba(20,20,26,0.55);
+  --panel-strong:rgba(16,16,22,0.78);
+  --line:rgba(212,175,55,0.22);
+  --line-strong:rgba(212,175,55,0.5);
+  --text:#EAE4D6;
+  --muted:#9a9486;
+  --shadow:0 30px 80px -30px rgba(0,0,0,0.85);
+  --gold-grad:linear-gradient(135deg,#F3D98B 0%,#D4AF37 45%,#a9842a 100%);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'Courier New',monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--obsidian);
+  color:var(--text);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+body::before{
+  content:"";
+  position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(1200px 800px at 80% -10%, rgba(212,175,55,0.10), transparent 60%),
+    radial-gradient(900px 700px at 10% 110%, rgba(7,61,50,0.22), transparent 55%),
+    linear-gradient(180deg,#070707 0%,#0B0B0F 40%,#070707 100%);
+}
+#bg-canvas{position:fixed;inset:0;z-index:-1;display:block;width:100%;height:100%}
+::selection{background:rgba(212,175,55,0.3);color:var(--ivory)}
+
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.1;letter-spacing:0.01em}
+a{color:var(--gold-2);text-decoration:none}
+img{max-width:100%}
+
+/* ---------- Navigation ---------- */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:16px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(7,7,10,0.35);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  border-bottom:1px solid var(--line);
+  transition:padding .35s ease,background .35s ease;
+}
+.nav.scrolled{padding:10px 40px;background:rgba(7,7,10,0.7)}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer}
+.brand-mark{
+  width:38px;height:38px;border-radius:10px;
+  background:var(--gold-grad);
+  display:grid;place-items:center;
+  font-family:var(--serif);font-weight:700;font-size:18px;color:#1a1407;
+  box-shadow:0 0 24px rgba(212,175,55,0.45),inset 0 1px 0 rgba(255,255,255,0.4);
+}
+.brand-text{font-family:var(--serif);font-size:18px;letter-spacing:.08em;color:var(--ivory)}
+.brand-text span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:6px;list-style:none}
+.nav-links a{
+  color:var(--text);font-size:13.5px;letter-spacing:.04em;
+  padding:9px 15px;border-radius:8px;position:relative;
+  transition:color .25s ease,background .25s ease;
+}
+.nav-links a:hover{color:var(--gold-2);background:rgba(212,175,55,0.08)}
+.nav-links a.active{color:var(--gold)}
+.nav-search{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--line);
+  border-radius:30px;padding:6px 14px;transition:border-color .3s ease;
+}
+.nav-search:focus-within{border-color:var(--line-strong);box-shadow:0 0 0 3px rgba(212,175,55,0.12)}
+.nav-search input{
+  background:transparent;border:0;outline:0;color:var(--ivory);
+  font-family:var(--sans);font-size:13px;width:170px;
+}
+.nav-search input::placeholder{color:var(--muted)}
+.nav-search svg{width:15px;height:15px;color:var(--gold);flex:none}
+.nav-toggle{
+  display:none;background:transparent;border:1px solid var(--line);
+  border-radius:8px;width:42px;height:42px;cursor:pointer;
+  flex-direction:column;gap:5px;align-items:center;justify-content:center;
+}
+.nav-toggle span{width:18px;height:2px;background:var(--gold);border-radius:2px;transition:.3s}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---------- Buttons ---------- */
+.btn{
+  font-family:var(--sans);font-size:13.5px;font-weight:500;letter-spacing:.05em;
+  padding:13px 26px;border-radius:30px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:9px;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease,background .3s ease;
+  border:1px solid transparent;text-decoration:none;
+}
+.btn-gold{
+  background:var(--gold-grad);color:#1a1407;
+  box-shadow:0 10px 30px -8px rgba(212,175,55,0.5),inset 0 1px 0 rgba(255,255,255,0.35);
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 40px -8px rgba(212,175,55,0.65)}
+.btn-ghost{
+  background:rgba(255,255,255,0.03);color:var(--ivory);
+  border-color:var(--line-strong);
+}
+.btn-ghost:hover{transform:translateY(-2px);border-color:var(--gold);background:rgba(212,175,55,0.08);color:var(--gold-2)}
+.btn-sm{padding:9px 18px;font-size:12.5px}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  padding:120px 40px 80px;overflow:hidden;
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;width:100%;max-width:1400px;margin:0 auto;position:relative;z-index:2}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+  padding:8px 16px;border:1px solid var(--line);border-radius:30px;
+  background:rgba(212,175,55,0.05);margin-bottom:28px;
+}
+.hero-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.hero h1{
+  font-size:clamp(46px,7vw,92px);line-height:.98;color:var(--ivory);
+  letter-spacing:-.01em;margin-bottom:18px;
+}
+.hero h1 .accent{
+  background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  font-style:italic;
+}
+.hero-sub{font-family:var(--serif);font-size:clamp(18px,2vw,24px);color:var(--gold-2);margin-bottom:16px;letter-spacing:.02em}
+.hero-text{font-size:16px;color:var(--muted);max-width:560px;margin-bottom:34px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:44px}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap}
+.hero-stat .num{font-family:var(--serif);font-size:38px;color:var(--gold);line-height:1}
+.hero-stat .lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+.hero-visual{position:relative;height:480px;display:flex;align-items:center;justify-content:center}
+#hero-canvas{width:100%;height:100%;display:block}
+.hero-orb-ring{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.hero-orb{
+  width:230px;height:230px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,rgba(243,217,139,0.18),rgba(212,175,55,0.05) 60%,transparent 75%);
+  border:1px solid var(--line);
+  display:grid;place-items:center;
+  box-shadow:inset 0 0 60px rgba(212,175,55,0.15),0 0 80px rgba(212,175,55,0.12);
+}
+.hero-orb .js{
+  font-family:var(--serif);font-style:italic;font-size:64px;font-weight:700;
+  background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+.scroll-indicator{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  color:var(--muted);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+}
+.mouse{width:24px;height:38px;border:1.5px solid var(--line-strong);border-radius:14px;position:relative}
+.mouse::after{content:"";position:absolute;top:7px;left:50%;transform:translateX(-50%);width:3px;height:7px;border-radius:2px;background:var(--gold);animation:wheel 1.8s infinite}
+@keyframes wheel{0%{opacity:1;top:7px}80%{opacity:0;top:18px}100%{opacity:0}}
+
+/* ---------- Section base ---------- */
+.section{padding:90px 40px;position:relative}
+.section-head{max-width:1400px;margin:0 auto 50px;text-align:center}
+.section-kicker{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.section-head h2{font-size:clamp(34px,4.5vw,54px);color:var(--ivory);margin-bottom:14px}
+.section-head p{color:var(--muted);max-width:680px;margin:0 auto;font-size:15.5px}
+.divider{width:60px;height:2px;background:var(--gold-grad);margin:18px auto 0;border-radius:2px}
+
+/* ---------- Assignment cards ---------- */
+.assign-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:1200px;margin:0 auto}
+.acard{
+  position:relative;padding:38px;border-radius:20px;overflow:hidden;
+  background:var(--panel);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line);
+  transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s ease,box-shadow .4s ease;
+}
+.acard::before{
+  content:"";position:absolute;inset:0;border-radius:20px;padding:1px;
+  background:linear-gradient(135deg,rgba(212,175,55,0.6),transparent 40%,transparent 60%,rgba(212,175,55,0.3));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:.5;transition:opacity .4s;
+}
+.acard:hover{transform:translateY(-6px);border-color:var(--line-strong);box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 50px -20px rgba(212,175,55,.4)}
+.acard:hover::before{opacity:1}
+.acard-num{font-family:var(--serif);font-style:italic;font-size:80px;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(212,175,55,.5);margin-bottom:10px}
+.acard h3{font-size:26px;color:var(--ivory);margin-bottom:8px}
+.acard .sub{color:var(--gold-2);font-size:14px;margin-bottom:18px}
+.acard p{color:var(--muted);font-size:14.5px;margin-bottom:24px}
+.acard-foot{display:flex;align-items:center;justify-content:space-between}
+.acard .count{font-size:13px;color:var(--gold);letter-spacing:.06em}
+
+/* ---------- Controls bar ---------- */
+.controls{
+  max-width:1400px;margin:0 auto 36px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;
+}
+.search-big{
+  flex:1;min-width:260px;max-width:520px;display:flex;align-items:center;gap:10px;
+  background:var(--panel-strong);border:1px solid var(--line);border-radius:30px;padding:13px 20px;
+}
+.search-big:focus-within{border-color:var(--line-strong);box-shadow:0 0 0 3px rgba(212,175,55,0.1)}
+.search-big input{background:transparent;border:0;outline:0;color:var(--ivory);font-size:14px;width:100%;font-family:var(--sans)}
+.search-big input::placeholder{color:var(--muted)}
+.search-big svg{width:17px;height:17px;color:var(--gold);flex:none}
+.chip-group{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  font-size:12.5px;letter-spacing:.03em;padding:10px 18px;border-radius:30px;cursor:pointer;
+  background:rgba(255,255,255,0.03);border:1px solid var(--line);color:var(--text);
+  transition:all .25s ease;font-family:var(--sans);
+}
+.chip:hover{border-color:var(--line-strong);color:var(--gold-2)}
+.chip.active{background:var(--gold-grad);color:#1a1407;border-color:transparent;font-weight:500}
+
+/* ---------- Question cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:26px;max-width:1400px;margin:0 auto}
+.qcard{
+  position:relative;border-radius:18px;overflow:hidden;
+  background:var(--panel);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--line);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s ease,box-shadow .35s ease;
+  transform-style:preserve-3d;will-change:transform;
+}
+.qcard::after{
+  content:"";position:absolute;inset:0;border-radius:18px;pointer-events:none;
+  background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(212,175,55,0.12),transparent 45%);
+  opacity:0;transition:opacity .35s;
+}
+.qcard:hover{border-color:var(--line-strong);box-shadow:0 30px 70px -28px rgba(0,0,0,.85),0 0 40px -22px rgba(212,175,55,.35)}
+.qcard:hover::after{opacity:1}
+.qcard-head{padding:22px 24px 18px;border-bottom:1px solid rgba(212,175,55,0.12)}
+.qcard-meta{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.badge{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:20px;font-weight:600}
+.badge.a1{background:rgba(212,175,55,0.14);color:var(--gold-2);border:1px solid rgba(212,175,55,0.3)}
+.badge.a2{background:rgba(7,61,50,0.5);color:#5fd9b8;border:1px solid rgba(95,217,184,0.3)}
+.badge.topic{background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid var(--line)}
+.badge.marks{background:transparent;color:var(--gold);border:1px solid var(--line-strong)}
+.qcard h3{font-size:21px;color:var(--ivory);letter-spacing:.01em}
+.qcard-body{padding:20px 24px}
+.qstatement{
+  font-size:14px;color:#cfc8b8;background:rgba(0,0,0,0.25);
+  border:1px solid rgba(212,175,55,0.1);border-radius:12px;padding:16px 18px;
+  white-space:pre-wrap;font-family:var(--sans);line-height:1.7;
+}
+.qstatement b,.qstatement strong{color:var(--gold-2)}
+.toggle-btn{
+  margin-top:14px;background:transparent;border:0;color:var(--gold);cursor:pointer;
+  font-size:12.5px;letter-spacing:.06em;font-family:var(--sans);display:inline-flex;align-items:center;gap:7px;
+  padding:6px 0;transition:color .25s;
+}
+.toggle-btn:hover{color:var(--gold-2)}
+.toggle-btn .arr{transition:transform .3s;display:inline-block}
+.toggle-btn.open .arr{transform:rotate(180deg)}
+
+.answer-wrap{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.2,.8,.2,1)}
+.answer-wrap.open{max-height:4000px}
+.answer-inner{padding:18px 0 6px}
+.answer-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.answer-label::before{content:"";width:22px;height:1px;background:var(--gold)}
+.code-block{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(212,175,55,0.18);background:#0a0a0f;margin-bottom:14px}
+.code-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(212,175,55,0.06);border-bottom:1px solid rgba(212,175,55,0.12)}
+.code-dots{display:flex;gap:6px}
+.code-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.12)}
+.code-dots span:nth-child(1){background:#ff5f57}
+.code-dots span:nth-child(2){background:#febc2e}
+.code-dots span:nth-child(3){background:#28c840}
+.code-lang{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.copy-btn{
+  font-size:11.5px;letter-spacing:.04em;color:var(--gold);background:transparent;
+  border:1px solid var(--line);border-radius:7px;padding:5px 12px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;transition:all .25s;font-family:var(--sans);
+}
+.copy-btn:hover{border-color:var(--line-strong);background:rgba(212,175,55,0.08);color:var(--gold-2)}
+.copy-btn.copied{background:var(--gold-grad);color:#1a1407;border-color:transparent}
+.copy-btn svg{width:13px;height:13px}
+.code-block pre{margin:0;padding:16px 18px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.7;color:#d8d2c4}
+.code-block pre::-webkit-scrollbar{height:8px}
+.code-block pre::-webkit-scrollbar-track{background:transparent}
+.code-block pre::-webkit-scrollbar-thumb{background:rgba(212,175,55,0.25);border-radius:4px}
+.code-block pre::-webkit-scrollbar-thumb:hover{background:rgba(212,175,55,0.45)}
+/* token colors */
+.tok-kw{color:#F3D98B;font-weight:500}
+.tok-str{color:#7fd1a3}
+.tok-num{color:#e0a96d}
+.tok-com{color:#6b6557;font-style:italic}
+.tok-fn{color:#c9b6ff}
+.tok-op{color:#cdb466}
+
+.explain{font-size:13.5px;color:#bdb6a6;line-height:1.75;margin-bottom:14px}
+.explain b{color:var(--gold-2)}
+.sample{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.sample-box{background:rgba(0,0,0,0.3);border:1px solid rgba(212,175,55,0.12);border-radius:10px;padding:12px 14px}
+.sample-box .lbl{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.sample-box .val{font-family:var(--mono);font-size:12.5px;color:#cfc8b8;white-space:pre-wrap;word-break:break-word}
+
+/* ---------- Empty state ---------- */
+.empty{max-width:560px;margin:60px auto;text-align:center;padding:50px 30px;border:1px dashed var(--line);border-radius:18px}
+.empty svg{width:48px;height:48px;color:var(--gold);opacity:.6;margin-bottom:18px}
+.empty h3{font-size:24px;color:var(--ivory);margin-bottom:10px}
+.empty p{color:var(--muted);font-size:14.5px}
+.empty button{margin-top:22px}
+
+/* ---------- About ---------- */
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:1200px;margin:0 auto}
+.about-card{padding:30px;border-radius:16px;background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(12px)}
+.about-card h4{font-size:18px;color:var(--gold-2);margin-bottom:12px;font-family:var(--serif)}
+.about-card p{font-size:14px;color:var(--muted);line-height:1.7}
+.about-card ul{list-style:none;margin-top:10px}
+.about-card li{font-size:13.5px;color:#cfc8b8;padding:6px 0 6px 22px;position:relative}
+.about-card li::before{content:"◆";position:absolute;left:0;color:var(--gold);font-size:9px;top:11px}
+
+/* ---------- Footer ---------- */
+.footer{padding:70px 40px 40px;border-top:1px solid var(--line);background:rgba(7,7,10,0.6);backdrop-filter:blur(12px);position:relative}
+.footer-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.footer h4{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-family:var(--sans);font-weight:600}
+.footer-brand .name{font-family:var(--serif);font-size:26px;color:var(--ivory);margin-bottom:8px}
+.footer-brand .name span{color:var(--gold)}
+.footer-brand p{font-size:13.5px;color:var(--muted);max-width:340px}
+.footer ul{list-style:none}
+.footer li{padding:6px 0;font-size:13.5px;color:#bdb6a6}
+.footer li b{color:var(--gold-2);font-weight:500}
+.footer-note{max-width:1400px;margin:40px auto 0;padding-top:28px;border-top:1px solid rgba(212,175,55,0.1);font-size:12.5px;color:var(--muted);text-align:center;line-height:1.8}
+
+/* ---------- Back to top + Progress ---------- */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--gold-grad);width:0;z-index:101;transition:width .1s linear}
+.back-top{
+  position:fixed;bottom:28px;right:28px;z-index:90;width:50px;height:50px;border-radius:50%;
+  background:var(--gold-grad);border:0;cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 12px 30px -8px rgba(212,175,55,0.6);opacity:0;transform:translateY(20px) scale(.8);
+  transition:opacity .3s,transform .3s;color:#1a1407;
+}
+.back-top.show{opacity:1;transform:translateY(0) scale(1)}
+.back-top:hover{transform:translateY(-3px) scale(1.05)}
+.back-top svg{width:20px;height:20px}
+
+/* ---------- Toast ---------- */
+.toast{
+  position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(30px);
+  background:var(--gold-grad);color:#1a1407;padding:13px 26px;border-radius:30px;
+  font-size:13.5px;font-weight:500;letter-spacing:.03em;z-index:200;
+  box-shadow:0 16px 40px -10px rgba(212,175,55,0.6);opacity:0;transition:all .35s cubic-bezier(.2,.8,.2,1);
+  display:flex;align-items:center;gap:9px;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast svg{width:16px;height:16px}
+
+/* ---------- Reveal animations ---------- */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .nav{padding:14px 24px}
+  .nav.scrolled{padding:10px 24px}
+  .hero{padding:110px 24px 70px}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-visual{height:340px}
+  .section{padding:70px 24px}
+  .footer{padding:60px 24px 36px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .assign-cards{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .nav-links,.nav-search{display:none}
+  .nav-toggle{display:flex}
+  .nav-links.mobile{
+    display:flex;position:fixed;top:72px;left:16px;right:16px;
+    flex-direction:column;gap:4px;padding:18px;border-radius:16px;
+    background:rgba(11,11,15,0.97);backdrop-filter:blur(20px);
+    border:1px solid var(--line);box-shadow:var(--shadow);align-items:stretch;
+  }
+  .nav-links.mobile a{padding:14px 18px;font-size:15px;border-radius:10px}
+  .nav-links.mobile .nav-search{display:flex;margin:8px 0 6px;width:100%}
+  .nav-links.mobile .nav-search input{width:100%}
+  .hero h1{font-size:46px}
+  .hero-stats{gap:26px}
+  .hero-stat .num{font-size:30px}
+  .cards{grid-template-columns:1fr}
+  .sample{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+  .section-head h2{font-size:30px}
+  .acard{padding:28px}
+  .acard-num{font-size:60px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;transform:none}
+}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="nav" id="nav">
+  <div class="brand" onclick="scrollTo({top:0,behavior:'smooth'})">
+    <div class="brand-mark">JS</div>
+    <div class="brand-text">JavaScript <span>Mastery</span></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#assignment-01">Assignment 01</a></li>
+    <li><a href="#assignment-02">Assignment 02</a></li>
+    <li><a href="#all">All Questions</a></li>
+    <li><a href="#about">About</a></li>
+    <li>
+      <div class="nav-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="navSearch" placeholder="Search questions…" aria-label="Search questions" />
+      </div>
+    </li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-content reveal">
+      <span class="hero-eyebrow">SMIT Batch 22 · Educational Reference</span>
+      <h1>JavaScript <span class="accent">Mastery</span></h1>
+      <div class="hero-sub">SMIT Batch 22 — Complete Assignment Solutions</div>
+      <p class="hero-text">Explore JavaScript fundamentals, mathematical expressions, logical operators, conditional statements, and practical problem-solving through 27 carefully organized questions.</p>
+      <div class="hero-cta">
+        <a href="#assignment-01" class="btn btn-gold">Explore Assignment 01
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#assignment-02" class="btn btn-gold">Explore Assignment 02
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#all" class="btn btn-ghost">Browse All Questions</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">27</div><div class="lbl">Total Questions</div></div>
+        <div class="hero-stat"><div class="num">12</div><div class="lbl">Assignment 01</div></div>
+        <div class="hero-stat"><div class="num">15</div><div class="lbl">Assignment 02</div></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-orb-ring">
+        <div class="hero-orb"><span class="js">JS</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="mouse"></div>
+    <span>Scroll</span>
+  </div>
+</header>
+
+<!-- ============ ASSIGNMENT CARDS ============ -->
+<section class="section" id="assignments">
+  <div class="section-head reveal">
+    <div class="section-kicker">Two Complete Assignments</div>
+    <h2>The Assignments</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="assign-cards">
+    <article class="acard reveal" data-tilt>
+      <div class="acard-num">01</div>
+      <h3>Fundamentals &amp; Basic Problem Solving</h3>
+      <div class="sub">JavaScript Assignment 01</div>
+      <p>Variables, data types, arithmetic, prompts, alerts, and real-world calculations — built without loops, arrays, functions, or conditionals.</p>
+      <div class="acard-foot">
+        <span class="count">12 Questions</span>
+        <a href="#assignment-01" class="btn btn-gold btn-sm">Open
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+    <article class="acard reveal" data-tilt>
+      <div class="acard-num">02</div>
+      <h3>Conditions &amp; Logical Operators</h3>
+      <div class="sub">JavaScript Assignment 02</div>
+      <p>Decision-making with if / else if / else, comparison and logical operators, nested conditions, and validation — no loops, arrays, or functions.</p>
+      <div class="acard-foot">
+        <span class="count">15 Questions</span>
+        <a href="#assignment-02" class="btn btn-gold btn-sm">Open
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ ASSIGNMENT 01 ============ -->
+<section class="section" id="assignment-01">
+  <div class="section-head reveal">
+    <div class="section-kicker">Assignment 01 · 12 Questions</div>
+    <h2>Fundamentals &amp; Basic Problem Solving</h2>
+    <p>JavaScript basics — variables, data types, mathematical expressions, prompts, alerts, and practical calculators. Solutions use only fundamentals (no loops, arrays, functions, or conditionals).</p>
+    <div class="divider"></div>
+  </div>
+  <div class="controls reveal">
+    <div class="search-big">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="searchInput" placeholder="Search by question title or content…" aria-label="Search questions" />
+    </div>
+    <div class="chip-group" id="chipGroup" role="tablist">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="a1">Assignment 01</button>
+      <button class="chip" data-filter="a2">Assignment 02</button>
+      <button class="chip" data-filter="variables">Variables</button>
+      <button class="chip" data-filter="calculations">Calculations</button>
+      <button class="chip" data-filter="strings">Strings</button>
+      <button class="chip" data-filter="conditions">Conditions</button>
+      <button class="chip" data-filter="logical">Logical Operators</button>
+    </div>
+  </div>
+  <div class="cards" id="cards-a1"></div>
+</section>
+
+<!-- ============ ASSIGNMENT 02 ============ -->
+<section class="section" id="assignment-02">
+  <div class="section-head reveal">
+    <div class="section-kicker">Assignment 02 · 15 Questions</div>
+    <h2>Conditions &amp; Logical Operators</h2>
+    <p>Conditional logic with if / else if / else, comparison operators, logical operators, and nested conditions — including validation, grade calculators, ATM systems, and more.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="cards" id="cards-a2"></div>
+</section>
+
+<!-- ============ ALL QUESTIONS ============ -->
+<section class="section" id="all">
+  <div class="section-head reveal">
+    <div class="section-kicker">Complete Catalog</div>
+    <h2>All 27 Questions</h2>
+    <p>Browse every question from both assignments in one place. Use the search and topic filters above to find exactly what you need.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="cards" id="cards-all"></div>
+  <div class="empty" id="emptyState" style="display:none">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <h3>No questions found</h3>
+    <p>Try a different keyword or clear the filters to see all 27 questions.</p>
+    <button class="btn btn-gold btn-sm" onclick="clearAll()">Reset Search &amp; Filters</button>
+  </div>
+  <div id="resultCount" style="text-align:center;margin-top:30px;color:var(--muted);font-size:13.5px;letter-spacing:.04em"></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="section-head reveal">
+    <div class="section-kicker">About This Resource</div>
+    <h2>About</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-card reveal">
+      <h4>The Course</h4>
+      <p>Web &amp; Mobile App Development — SMIT Batch 22. These assignments build a strong foundation in JavaScript fundamentals and conditional problem-solving.</p>
+    </div>
+    <div class="about-card reveal">
+      <h4>What's Inside</h4>
+      <ul>
+        <li>Assignment 01 — 12 questions on fundamentals</li>
+        <li>Assignment 02 — 15 questions on conditions</li>
+        <li>27 complete questions &amp; reference solutions</li>
+        <li>Copy-ready code with explanations</li>
+      </ul>
+    </div>
+    <div class="about-card reveal">
+      <h4>Assignment 01 Rules</h4>
+      <p>Solutions use only <b>variables, prompt(), alert(), console.log()</b>, and arithmetic. No loops, arrays, functions, or conditionals — pure fundamentals.</p>
+    </div>
+    <div class="about-card reveal">
+      <h4>Assignment 02 Rules</h4>
+      <p>Solutions use <b>if / else if / else</b>, comparison &amp; logical operators, and nested conditions. No loops, arrays, functions, or objects.</p>
+    </div>
+    <div class="about-card reveal">
+      <h4>How to Use</h4>
+      <ul>
+        <li>Search &amp; filter by topic or assignment</li>
+        <li>Expand questions to read full statements</li>
+        <li>Reveal answers &amp; copy reference code</li>
+        <li>Review sample inputs &amp; expected outputs</li>
+      </ul>
+    </div>
+    <div class="about-card reveal">
+      <h4>Learning Note</h4>
+      <p>These solutions are a <b>learning reference for understanding and practice</b>. Students should review, understand, and independently write their own submitted solutions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="name">JavaScript <span>Mastery</span></div>
+      <p>An ultra-premium educational reference built for SMIT Batch 22 — Web &amp; Mobile App Development.</p>
+    </div>
+    <div>
+      <h4>Programs</h4>
+      <ul>
+        <li>SMIT Batch 22</li>
+        <li>Web &amp; Mobile App Development</li>
+        <li>JavaScript Module</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Assignments</h4>
+      <ul>
+        <li>Assignment 01: <b>12 Questions</b></li>
+        <li>Assignment 02: <b>15 Questions</b></li>
+        <li>Total: <b>27 Questions</b></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#home" style="color:#bdb6a6">Home</a></li>
+        <li><a href="#assignment-01" style="color:#bdb6a6">Assignment 01</a></li>
+        <li><a href="#assignment-02" style="color:#bdb6a6">Assignment 02</a></li>
+        <li><a href="#all" style="color:#bdb6a6">All Questions</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-note">
+    Educational reference based on the two JavaScript assignment PDFs (JS-Assignment-01 &amp; JS-Assignment-02).<br/>
+    Presented as a learning reference — students should review, understand, and independently write their own submitted solutions. © SMIT Batch 22.
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="toastMsg">Code copied to clipboard</span>
+</div>
+
+<!-- ============ Three.js (CDN with fallback) ============ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+/* ============================================================
+   JAVASCRIPT MASTERY — APP LOGIC & 3D SCENE
+   ============================================================ */
+"use strict";
+
+/* ---------- Question Data: 27 questions ---------- */
+var QUESTIONS = []; /* populated below */
+
+/* ===== ASSIGNMENT 01 (12 questions) ===== */
+QUESTIONS.push({
+  id:"a1q1", assignment:1, number:1, topic:"variables", topicLabel:"Variables",
+  title:"Personal Information",
+  marks:null,
+  question:"1. Declare variables to store the following personal information and display them using alert():\n\n   • Your name\n   • Your age\n   • Your qualification\n   • Your country\n   • Your hobby\n\n   Display all the information in a single alert box, formatted neatly on separate lines.",
+  code:"// Store personal information in variables\nvar name = \"Ahmed Raza\";\nvar age = 22;\nvar qualification = \"Undergraduate in Computer Science\";\nvar country = \"Pakistan\";\nvar hobby = \"Coding & Cricket\";\n\n// Display all information in a single alert box\nalert(\"Name: \" + name +\n      \"\\nAge: \" + age +\n      \"\\nQualification: \" + qualification +\n      \"\\nCountry: \" + country +\n      \"\\nHobby: \" + hobby);",
+  explain:"Five variables hold personal details. The <b>+</b> operator concatenates them with <b>\\n</b> newline characters so each piece of information appears on its own line inside one alert box. Only variables and string concatenation are used — no conditionals or loops.",
+  sampleIn:"name = \"Ahmed Raza\"\nage = 22\nqualification = \"Undergraduate...\"",
+  sampleOut:"Name: Ahmed Raza\nAge: 22\nQualification: Undergraduate in Computer Science\nCountry: Pakistan\nHobby: Coding & Cricket"
+});
+QUESTIONS.push({
+  id:"a1q2", assignment:1, number:2, topic:"variables", topicLabel:"Variables",
+  title:"Variable Declaration",
+  marks:null,
+  question:"2. Declare variables using var, let, and const. Demonstrate the difference between them by:\n\n   • Declaring a variable with var and reassigning it\n   • Declaring a variable with let and reassigning it\n   • Declaring a variable with const and showing that it cannot be reassigned\n\n   Display the values using console.log().",
+  code:"// var — can be redeclared and reassigned\nvar city = \"Karachi\";\nconsole.log(\"var before:\", city);\ncity = \"Lahore\";\nconsole.log(\"var after:\", city);\n\n// let — can be reassigned but not redeclared in same scope\nlet score = 50;\nconsole.log(\"let before:\", score);\nscore = 85;\nconsole.log(\"let after:\", score);\n\n// const — cannot be reassigned\nconst PI = 3.14159;\nconsole.log(\"const:\", PI);\n// PI = 3.14;  // ERROR: Assignment to constant variable.",
+  explain:"<b>var</b> is function-scoped and reassignable. <b>let</b> is block-scoped and reassignable. <b>const</b> is block-scoped and cannot be reassigned after declaration. The commented line shows that reassigning a const throws an error. Each value is printed with console.log to demonstrate reassignment.",
+  sampleIn:"city = \"Karachi\" → \"Lahore\"\nscore = 50 → 85\nPI = 3.14159 (fixed)",
+  sampleOut:"var before: Karachi\nvar after: Lahore\nlet before: 50\nlet after: 85\nconst: 3.14159"
+});
+QUESTIONS.push({
+  id:"a1q3", assignment:1, number:3, topic:"variables", topicLabel:"Data Types",
+  title:"Data Types",
+  marks:null,
+  question:"3. Declare variables of the following JavaScript data types and display each value with its type using typeof:\n\n   • String\n   • Number\n   • Boolean\n   • Undefined\n   • Null\n\n   Use console.log() to print both the value and its type.",
+  code:"// String\nvar userName = \"Bilal\";\nconsole.log(\"Value:\", userName, \"| Type:\", typeof userName);\n\n// Number\nvar userAge = 22;\nconsole.log(\"Value:\", userAge, \"| Type:\", typeof userAge);\n\n// Boolean\nvar isStudent = true;\nconsole.log(\"Value:\", isStudent, \"| Type:\", typeof isStudent);\n\n// Undefined\nvar subject;\nconsole.log(\"Value:\", subject, \"| Type:\", typeof subject);\n\n// Null\nvar car = null;\nconsole.log(\"Value:\", car, \"| Type:\", typeof car);",
+  explain:"<b>typeof</b> returns the data type of a variable as a string. Note that <b>typeof null</b> returns \"object\" — a long-standing JavaScript quirk. An undeclared variable (no value assigned) is <b>undefined</b>. Each value and its type are printed together for clarity.",
+  sampleIn:"userName = \"Bilal\"\nuserAge = 22\nisStudent = true\nsubject (no value)\ncar = null",
+  sampleOut:"Value: Bilal | Type: string\nValue: 22 | Type: number\nValue: true | Type: boolean\nValue: undefined | Type: undefined\nValue: null | Type: object"
+});
+QUESTIONS.push({
+  id:"a1q4", assignment:1, number:4, topic:"variables", topicLabel:"Variables",
+  title:"Legal and Illegal Variables",
+  marks:null,
+  question:"4. Identify which of the following variable names are legal and which are illegal. Explain the reason for each and provide a corrected alternative for the illegal ones:\n\n   a) var 1username = \"Ali\";\n   b) var _userAge = 25;\n   c) var var = \"keyword\";\n   d) var user-name = \"John\";\n   e) var $totalAmount = 500;\n   f) var user name = \"Sara\";\n   g) var firstName = \"Ayesha\";",
+  code:"// === ILLEGAL ===\n// a) 1username — cannot start with a digit\n//    Fix: var username1 = \"Ali\";\n\n// c) var — reserved keyword, cannot be a variable name\n//    Fix: var variableName = \"keyword\";\n\n// d) user-name — hyphen is not allowed (treated as minus)\n//    Fix: var userName = \"John\";\n\n// f) user name — spaces are not allowed\n//    Fix: var userFullName = \"Sara\";\n\n// === LEGAL ===\n// b) _userAge — may start with underscore\nvar _userAge = 25;\nconsole.log(\"Legal _userAge:\", _userAge);\n\n// e) $totalAmount — may start with dollar sign\nvar $totalAmount = 500;\nconsole.log(\"Legal $totalAmount:\", $totalAmount);\n\n// g) firstName — camelCase, starts with letter\nvar firstName = \"Ayesha\";\nconsole.log(\"Legal firstName:\", firstName);\n\n// Corrected alternatives\nvar username1 = \"Ali\";\nvar variableName = \"keyword\";\nvar userName = \"John\";\nvar userFullName = \"Sara\";\nconsole.log(\"Corrected:\", username1, variableName, userName, userFullName);",
+  explain:"Variable naming rules: names may contain letters, digits, <b>_</b>, and <b>$</b>; they must <b>not</b> start with a digit; they cannot contain spaces or hyphens; they cannot be JavaScript reserved words (like <b>var</b>). Underscore and dollar sign are valid starting characters. camelCase is the conventional style.",
+  sampleIn:"Given 7 names to evaluate",
+  sampleOut:"Legal: _userAge, $totalAmount, firstName\nIllegal: 1username, var, user-name, user name\nCorrections: username1, variableName, userName, userFullName"
+});
+QUESTIONS.push({
+  id:"a1q5", assignment:1, number:5, topic:"calculations", topicLabel:"Calculations",
+  title:"Basic Calculator",
+  marks:null,
+  question:"5. Take two numbers from the user using prompt(). Perform addition, subtraction, multiplication, and division on them. Display all four results using alert().\n\n   Sample Input:\n   First number: 10\n   Second number: 5\n\n   Expected Output:\n   Addition: 15\n   Subtraction: 5\n   Multiplication: 50\n   Division: 2",
+  code:"// Take two numbers from the user\nvar firstNumber = +prompt(\"Enter first number:\");\nvar secondNumber = +prompt(\"Enter second number:\");\n\n// Perform arithmetic operations\nvar addition = firstNumber + secondNumber;\nvar subtraction = firstNumber - secondNumber;\nvar multiplication = firstNumber * secondNumber;\nvar division = firstNumber / secondNumber;\n\n// Display all results\nalert(\"Addition: \" + addition +\n      \"\\nSubtraction: \" + subtraction +\n      \"\\nMultiplication: \" + multiplication +\n      \"\\nDivision: \" + division);",
+  explain:"The unary <b>+</b> operator before prompt() converts the string input into a number. Four arithmetic operations are stored in separate variables and concatenated into a single alert with newlines. No conditionals are needed — pure arithmetic.",
+  sampleIn:"First number: 10\nSecond number: 5",
+  sampleOut:"Addition: 15\nSubtraction: 5\nMultiplication: 50\nDivision: 2"
+});
+QUESTIONS.push({
+  id:"a1q6", assignment:1, number:6, topic:"calculations", topicLabel:"Calculations",
+  title:"Shopping Bill",
+  marks:null,
+  question:"6. Take the price and quantity of an item from the user using prompt(). Calculate the total cost and display a shopping bill showing:\n\n   • Price of item\n   • Quantity of item\n   • Total cost (price × quantity)\n\n   Sample Input:\n   Price: 250\n   Quantity: 4\n\n   Expected Output:\n   Price: 250\n   Quantity: 4\n   Total Cost: 1000",
+  code:"// Take price and quantity from user\nvar price = +prompt(\"Enter price of the item:\");\nvar quantity = +prompt(\"Enter quantity of the item:\");\n\n// Calculate total cost\nvar totalCost = price * quantity;\n\n// Display shopping bill\nalert(\"===== Shopping Bill =====\" +\n      \"\\nPrice: \" + price +\n      \"\\nQuantity: \" + quantity +\n      \"\\nTotal Cost: \" + totalCost);",
+  explain:"The price and quantity are converted to numbers using the unary <b>+</b> operator. The total cost is the product of price and quantity. All three values are displayed in a formatted alert box that resembles a shopping bill receipt.",
+  sampleIn:"Price: 250\nQuantity: 4",
+  sampleOut:"===== Shopping Bill =====\nPrice: 250\nQuantity: 4\nTotal Cost: 1000"
+});
+QUESTIONS.push({
+  id:"a1q7", assignment:1, number:7, topic:"calculations", topicLabel:"Math Expressions",
+  title:"Mathematical Expression",
+  marks:null,
+  question:"7. Solve the following five mathematical expressions in JavaScript. Show the result of each and explain the order of operations (BODMAS/PEMDAS):\n\n   a) 10 + 2 * 3\n   b) (10 + 2) * 3\n   c) 10 / 2 + 5\n   d) 10 % 3 + 2\n   e) 2 * (3 + 4) - 5",
+  code:"// a) 10 + 2 * 3\n// Multiplication first (2*3=6), then addition (10+6=16)\nvar a = 10 + 2 * 3;\nconsole.log(\"a) 10 + 2 * 3 =\", a);\n\n// b) (10 + 2) * 3\n// Parentheses first (10+2=12), then multiply (12*3=36)\nvar b = (10 + 2) * 3;\nconsole.log(\"b) (10 + 2) * 3 =\", b);\n\n// c) 10 / 2 + 5\n// Division first (10/2=5), then addition (5+5=10)\nvar c = 10 / 2 + 5;\nconsole.log(\"c) 10 / 2 + 5 =\", c);\n\n// d) 10 % 3 + 2\n// Modulus first (10%3=1), then addition (1+2=3)\nvar d = 10 % 3 + 2;\nconsole.log(\"d) 10 % 3 + 2 =\", d);\n\n// e) 2 * (3 + 4) - 5\n// Parentheses (3+4=7), then multiply (2*7=14), then subtract (14-5=9)\nvar e = 2 * (3 + 4) - 5;\nconsole.log(\"e) 2 * (3 + 4) - 5 =\", e);",
+  explain:"JavaScript follows <b>BODMAS/PEMDAS</b>: Brackets/Parentheses first, then Multiplication/Division and Modulus (left to right), then Addition/Subtraction (left to right). Each comment explains which operation is evaluated first and why the result is what it is.",
+  sampleIn:"Five expressions evaluated",
+  sampleOut:"a) 10 + 2 * 3 = 16\nb) (10 + 2) * 3 = 36\nc) 10 / 2 + 5 = 10\nd) 10 % 3 + 2 = 3\ne) 2 * (3 + 4) - 5 = 9"
+});
+QUESTIONS.push({
+  id:"a1q8", assignment:1, number:8, topic:"strings", topicLabel:"Strings",
+  title:"Welcome Message",
+  marks:null,
+  question:"8. Take the user's name as input using prompt(). Display a welcome message using alert() that greets the user by name.\n\n   Sample Input:\n   What is your name? Hamza\n\n   Expected Output:\n   Welcome, Hamza! Have a great day.",
+  code:"// Take user's name\nvar userName = prompt(\"What is your name?\");\n\n// Display welcome message\nalert(\"Welcome, \" + userName + \"! Have a great day.\");",
+  explain:"prompt() returns the user's input as a string, stored in <b>userName</b>. The welcome message is built by concatenating the greeting text with the user's name and a closing message. String concatenation with <b>+</b> joins everything into one alert.",
+  sampleIn:"What is your name? Hamza",
+  sampleOut:"Welcome, Hamza! Have a great day."
+});
+QUESTIONS.push({
+  id:"a1q9", assignment:1, number:9, topic:"calculations", topicLabel:"Calculations",
+  title:"Age Calculator",
+  marks:null,
+  question:"9. Take the user's birth year and the current year using prompt(). Calculate and display the user's age.\n\n   Sample Input:\n   Birth year: 2000\n   Current year: 2025\n\n   Expected Output:\n   Your age is: 25",
+  code:"// Take birth year and current year\nvar birthYear = +prompt(\"Enter your birth year:\");\nvar currentYear = +prompt(\"Enter the current year:\");\n\n// Calculate age\nvar age = currentYear - birthYear;\n\n// Display age\nalert(\"Your age is: \" + age);",
+  explain:"Both year inputs are converted to numbers with the unary <b>+</b>. Age is simply the difference between the current year and the birth year. The result is concatenated into a friendly alert message. This calculates age in completed years as of the current year.",
+  sampleIn:"Birth year: 2000\nCurrent year: 2025",
+  sampleOut:"Your age is: 25"
+});
+QUESTIONS.push({
+  id:"a1q10", assignment:1, number:10, topic:"calculations", topicLabel:"Calculations",
+  title:"Marks Percentage Calculator",
+  marks:null,
+  question:"10. Take marks obtained in 5 subjects (each out of 100) using prompt(). Calculate the total marks (out of 500) and the percentage. Display the result.\n\n    Sample Input:\n    Subject 1: 78\n    Subject 2: 85\n    Subject 3: 90\n    Subject 4: 72\n    Subject 5: 88\n\n    Expected Output:\n    Total Marks: 413 out of 500\n    Percentage: 82.6%",
+  code:"// Take marks of 5 subjects (each out of 100)\nvar subject1 = +prompt(\"Enter marks of Subject 1 (out of 100):\");\nvar subject2 = +prompt(\"Enter marks of Subject 2 (out of 100):\");\nvar subject3 = +prompt(\"Enter marks of Subject 3 (out of 100):\");\nvar subject4 = +prompt(\"Enter marks of Subject 4 (out of 100):\");\nvar subject5 = +prompt(\"Enter marks of Subject 5 (out of 100):\");\n\n// Calculate total marks out of 500\nvar totalMarks = subject1 + subject2 + subject3 + subject4 + subject5;\nvar maxMarks = 500;\n\n// Calculate percentage\nvar percentage = (totalMarks / maxMarks) * 100;\n\n// Display result\nalert(\"Total Marks: \" + totalMarks + \" out of \" + maxMarks +\n      \"\\nPercentage: \" + percentage + \"%\");",
+  explain:"Five subject marks are each entered out of 100. Their sum gives the <b>total out of 500</b>. The percentage is calculated as <b>(totalMarks / 500) * 100</b>. Each variable is named clearly and the formula mirrors the mathematical definition of percentage.",
+  sampleIn:"Subject 1: 78\nSubject 2: 85\nSubject 3: 90\nSubject 4: 72\nSubject 5: 88",
+  sampleOut:"Total Marks: 413 out of 500\nPercentage: 82.6%"
+});
+QUESTIONS.push({
+  id:"a1q11", assignment:1, number:11, topic:"calculations", topicLabel:"Calculations",
+  title:"Currency Converter",
+  marks:null,
+  question:"11. Take an amount in US Dollars (USD) from the user and convert it to Pakistani Rupees (PKR). Use the fixed exchange rate: 1 USD = 280 PKR. Display the converted amount.\n\n    Sample Input:\n    Enter amount in USD: 50\n\n    Expected Output:\n    50 USD = 14000 PKR",
+  code:"// Fixed exchange rate\nvar exchangeRate = 280; // 1 USD = 280 PKR\n\n// Take amount in USD from user\nvar usdAmount = +prompt(\"Enter amount in USD:\");\n\n// Convert to PKR\nvar pkrAmount = usdAmount * exchangeRate;\n\n// Display result\nalert(usdAmount + \" USD = \" + pkrAmount + \" PKR\");",
+  explain:"The exchange rate is fixed at <b>1 USD = 280 PKR</b> as specified. The PKR amount is the USD amount multiplied by the rate. The result is displayed in a clear \"X USD = Y PKR\" format. No conditionals are used — pure arithmetic conversion.",
+  sampleIn:"Enter amount in USD: 50",
+  sampleOut:"50 USD = 14000 PKR"
+});
+QUESTIONS.push({
+  id:"a1q12", assignment:1, number:12, topic:"calculations", topicLabel:"Calculations",
+  title:"Salary Calculator",
+  marks:null,
+  question:"12. Take the basic salary from the user. Calculate:\n\n    • House allowance = 10% of basic salary\n    • Medical allowance = 5% of basic salary\n    • Gross salary = basic salary + house allowance + medical allowance\n    • Tax deduction = 7% of gross salary\n    • Net salary = gross salary - tax deduction\n\n    Sample Input:\n    Basic salary: 50000\n\n    Expected Output:\n    Basic Salary: 50000\n    House Allowance: 5000\n    Medical Allowance: 2500\n    Gross Salary: 57500\n    Tax Deduction: 4025\n    Net Salary: 53475",
+  code:"// Take basic salary from user\nvar basicSalary = +prompt(\"Enter your basic salary:\");\n\n// Calculate allowances\nvar houseAllowance = (basicSalary * 10) / 100;   // 10% of basic\nvar medicalAllowance = (basicSalary * 5) / 100;  // 5% of basic\n\n// Calculate gross salary\nvar grossSalary = basicSalary + houseAllowance + medicalAllowance;\n\n// Calculate tax deduction (7% of gross)\nvar taxDeduction = (grossSalary * 7) / 100;\n\n// Calculate net salary\nvar netSalary = grossSalary - taxDeduction;\n\n// Display salary slip\nalert(\"===== Salary Slip =====\" +\n      \"\\nBasic Salary: \" + basicSalary +\n      \"\\nHouse Allowance: \" + houseAllowance +\n      \"\\nMedical Allowance: \" + medicalAllowance +\n      \"\\nGross Salary: \" + grossSalary +\n      \"\\nTax Deduction: \" + taxDeduction +\n      \"\\nNet Salary: \" + netSalary);",
+  explain:"Each allowance is a percentage of the basic salary: house <b>10%</b>, medical <b>5%</b>. Gross salary adds basic + both allowances. Tax is <b>7%</b> of the gross salary. Net salary is gross minus tax. Every intermediate value is stored in its own variable and shown on the salary slip.",
+  sampleIn:"Basic salary: 50000",
+  sampleOut:"===== Salary Slip =====\nBasic Salary: 50000\nHouse Allowance: 5000\nMedical Allowance: 2500\nGross Salary: 57500\nTax Deduction: 4025\nNet Salary: 53475"
+});
+
+/* ===== ASSIGNMENT 02 (15 questions) ===== */
+QUESTIONS.push({
+  id:"a2q1", assignment:2, number:1, topic:"conditions", topicLabel:"Conditions",
+  title:"Positive, Negative or Zero",
+  marks:null,
+  question:"1. Take a number from the user and check whether it is positive, negative, or zero using if / else if / else.\n\n   Sample Input: 5\n   Expected Output: The number is Positive.\n\n   Sample Input: -3\n   Expected Output: The number is Negative.\n\n   Sample Input: 0\n   Expected Output: The number is Zero.",
+  code:"// Take a number from the user\nvar number = +prompt(\"Enter a number:\");\n\n// Check whether positive, negative, or zero\nif (number > 0) {\n    alert(\"The number is Positive.\");\n} else if (number < 0) {\n    alert(\"The number is Negative.\");\n} else {\n    alert(\"The number is Zero.\");\n}",
+  explain:"Three branches cover all cases: <b>number &gt; 0</b> is positive, <b>number &lt; 0</b> is negative, and the final <b>else</b> catches exactly zero. The conditions are mutually exclusive so only one message displays.",
+  sampleIn:"5  (or -3, or 0)",
+  sampleOut:"The number is Positive.  (or Negative, or Zero)"
+});
+QUESTIONS.push({
+  id:"a2q2", assignment:2, number:2, topic:"conditions", topicLabel:"Conditions",
+  title:"Even or Odd Number",
+  marks:null,
+  question:"2. Take a number from the user and check whether it is even or odd using the modulus operator (%).\n\n   Sample Input: 8\n   Expected Output: 8 is an Even number.\n\n   Sample Input: 7\n   Expected Output: 7 is an Odd number.",
+  code:"// Take a number from the user\nvar number = +prompt(\"Enter a number:\");\n\n// Check even or odd using modulus\nif (number % 2 === 0) {\n    alert(number + \" is an Even number.\");\n} else {\n    alert(number + \" is an Odd number.\");\n}",
+  explain:"The <b>modulus operator %</b> gives the remainder of division. If <b>number % 2 === 0</b> the number divides evenly by 2 (even); otherwise it is odd. Two branches are enough since every integer is either even or odd.",
+  sampleIn:"8  (or 7)",
+  sampleOut:"8 is an Even number.  (or 7 is an Odd number.)"
+});
+QUESTIONS.push({
+  id:"a2q3", assignment:2, number:3, topic:"conditions", topicLabel:"Conditions",
+  title:"Voting Eligibility",
+  marks:null,
+  question:"3. Take the user's age and check whether they are eligible to vote (age 18 or above). Reject negative ages with an appropriate message.\n\n   Sample Input: 20\n   Expected Output: You are eligible to vote.\n\n   Sample Input: 16\n   Expected Output: You are not eligible to vote.\n\n   Sample Input: -5\n   Expected Output: Invalid age entered.",
+  code:"// Take age from the user\nvar age = +prompt(\"Enter your age:\");\n\n// Validate and check voting eligibility\nif (age < 0) {\n    alert(\"Invalid age entered.\");\n} else if (age >= 18) {\n    alert(\"You are eligible to vote.\");\n} else {\n    alert(\"You are not eligible to vote.\");\n}",
+  explain:"The first branch <b>rejects negative ages</b> as invalid. Then <b>age &gt;= 18</b> grants eligibility; the final else covers ages 0–17. Checking for negative input first prevents nonsensical eligibility results.",
+  sampleIn:"20  (or 16, or -5)",
+  sampleOut:"You are eligible to vote.  (or not eligible, or Invalid age entered.)"
+});
+QUESTIONS.push({
+  id:"a2q4", assignment:2, number:4, topic:"conditions", topicLabel:"Conditions",
+  title:"Find the Largest Number",
+  marks:null,
+  question:"4. Take three numbers from the user and find the largest among them using nested if conditions. Handle cases where multiple numbers share the maximum value.\n\n   Sample Input: 10, 25, 15\n   Expected Output: 25 is the largest number.\n\n   Sample Input: 20, 20, 10\n   Expected Output: 20 is the largest number.",
+  code:"// Take three numbers from the user\nvar num1 = +prompt(\"Enter first number:\");\nvar num2 = +prompt(\"Enter second number:\");\nvar num3 = +prompt(\"Enter third number:\");\n\n// Find the largest using nested if conditions\nif (num1 >= num2 && num1 >= num3) {\n    alert(num1 + \" is the largest number.\");\n} else if (num2 >= num1 && num2 >= num3) {\n    alert(num2 + \" is the largest number.\");\n} else {\n    alert(num3 + \" is the largest number.\");\n}",
+  explain:"Using <b>&gt;=</b> (greater-than-or-equal) instead of strict <b>&gt;</b> ensures that when two or more numbers tie for the maximum, the first matching one is reported correctly. The logical <b>&amp;&amp;</b> requires a number to be greater than or equal to both others to be the largest.",
+  sampleIn:"10, 25, 15  (or 20, 20, 10)",
+  sampleOut:"25 is the largest number.  (or 20 is the largest number.)"
+});
+QUESTIONS.push({
+  id:"a2q5", assignment:2, number:5, topic:"logical", topicLabel:"Logical Operators",
+  title:"Login Authentication",
+  marks:null,
+  question:"5. Take a username and password from the user. Validate against the credentials:\n   Username: admin\n   Password: admin123\n\n   Display separate messages for: correct login, invalid username, and invalid password.\n\n   Sample Input: admin / admin123\n   Expected Output: Login successful! Welcome admin.\n\n   Sample Input: user / admin123\n   Expected Output: Invalid username.\n\n   Sample Input: admin / 123\n   Expected Output: Invalid password.",
+  code:"// Take username and password\nvar username = prompt(\"Enter username:\");\nvar password = prompt(\"Enter password:\");\n\n// Validate credentials with separate messages\nif (username !== \"admin\") {\n    alert(\"Invalid username.\");\n} else if (password !== \"admin123\") {\n    alert(\"Invalid password.\");\n} else {\n    alert(\"Login successful! Welcome \" + username + \".\");\n}",
+  explain:"Checking the <b>username first</b> means a wrong username is reported before the password is even considered. Only when the username is correct do we check the password. Both must match exactly (=== / !==) for a successful login. This gives clear, separate error messages.",
+  sampleIn:"admin / admin123  (or user / admin123, or admin / 123)",
+  sampleOut:"Login successful! Welcome admin.  (or Invalid username. / Invalid password.)"
+});
+QUESTIONS.push({
+  id:"a2q6", assignment:2, number:6, topic:"conditions", topicLabel:"Conditions",
+  title:"Student Grade Calculator",
+  marks:null,
+  question:"6. Take a student's percentage (0–100) and display the grade based on these boundaries:\n\n   • 90 and above: A+\n   • 80–89: A\n   • 70–79: B\n   • 60–69: C\n   • 50–59: D\n   • Below 50: Fail\n\n   Reject percentages below 0 or above 100 as invalid.\n\n   Sample Input: 85\n   Expected Output: Grade: A",
+  code:"// Take percentage from the user\nvar percentage = +prompt(\"Enter your percentage (0-100):\");\n\n// Validate and assign grade\nif (percentage < 0 || percentage > 100) {\n    alert(\"Invalid percentage entered.\");\n} else if (percentage >= 90) {\n    alert(\"Grade: A+\");\n} else if (percentage >= 80) {\n    alert(\"Grade: A\");\n} else if (percentage >= 70) {\n    alert(\"Grade: B\");\n} else if (percentage >= 60) {\n    alert(\"Grade: C\");\n} else if (percentage >= 50) {\n    alert(\"Grade: D\");\n} else {\n    alert(\"Grade: Fail\");\n}",
+  explain:"Validation comes first using <b>||</b> (OR) to reject anything outside 0–100. Because <b>else if</b> checks run top-down, each boundary only needs a lower bound — once a higher check fails, the value must be below that threshold. The final else catches anything below 50 (Fail).",
+  sampleIn:"85  (or 95, 72, 45, or 110)",
+  sampleOut:"Grade: A  (or A+, B, Fail, or Invalid percentage entered.)"
+});
+QUESTIONS.push({
+  id:"a2q7", assignment:2, number:7, topic:"conditions", topicLabel:"Conditions",
+  title:"Discount Eligibility",
+  marks:null,
+  question:"7. Take a purchase amount from the user and apply a discount based on these brackets:\n\n   • Above 5000: 20% discount\n   • 3000–5000: 10% discount\n   • 1000–2999: 5% discount\n   • Below 1000: no discount (0%)\n\n   Reject negative purchase amounts. Display the discount and final payable amount.\n\n   Sample Input: 6000\n   Expected Output:\n   Discount: 20% (1200)\n   Final Amount: 4800",
+  code:"// Take purchase amount\nvar purchaseAmount = +prompt(\"Enter purchase amount:\");\n\n// Reject negative amounts\nif (purchaseAmount < 0) {\n    alert(\"Invalid purchase amount.\");\n} else {\n    // Determine discount percentage\n    var discountPercent;\n    if (purchaseAmount > 5000) {\n        discountPercent = 20;\n    } else if (purchaseAmount >= 3000) {\n        discountPercent = 10;\n    } else if (purchaseAmount >= 1000) {\n        discountPercent = 5;\n    } else {\n        discountPercent = 0;\n    }\n\n    // Calculate discount and final amount\n    var discountAmount = (purchaseAmount * discountPercent) / 100;\n    var finalAmount = purchaseAmount - discountAmount;\n\n    alert(\"Discount: \" + discountPercent + \"% (\" + discountAmount + \")\" +\n          \"\\nFinal Amount: \" + finalAmount);\n}",
+  explain:"Negative amounts are rejected first. The bracket checks run from highest to lowest so each <b>else if</b> only needs a lower bound. The discount amount is <b>purchaseAmount × percent / 100</b>, and the final amount subtracts that discount.",
+  sampleIn:"6000  (or 4000, 1500, 500)",
+  sampleOut:"Discount: 20% (1200)\nFinal Amount: 4800"
+});
+QUESTIONS.push({
+  id:"a2q8", assignment:2, number:8, topic:"conditions", topicLabel:"Conditions",
+  title:"Leap Year Checker",
+  marks:null,
+  question:"8. Take a year from the user and check whether it is a leap year. Apply all leap-year rules:\n\n   • Divisible by 400 → Leap year\n   • Divisible by 100 (but not 400) → Not a leap year\n   • Divisible by 4 (but not 100) → Leap year\n   • Otherwise → Not a leap year\n\n   Sample Input: 2024\n   Expected Output: 2024 is a Leap Year.\n\n   Sample Input: 1900\n   Expected Output: 1900 is Not a Leap Year.",
+  code:"// Take a year from the user\nvar year = +prompt(\"Enter a year:\");\n\n// Check leap year using all rules\nif ((year % 400 === 0) || (year % 4 === 0 && year % 100 !== 0)) {\n    alert(year + \" is a Leap Year.\");\n} else {\n    alert(year + \" is Not a Leap Year.\");\n}",
+  explain:"A year is a leap year if it is <b>divisible by 400</b> OR (<b>divisible by 4</b> AND <b>not divisible by 100</b>). This single condition captures all three rules: century years like 1900 are excluded by the <b>% 100 !== 0</b> check unless divisible by 400 (like 2000). Using one combined boolean expression is the cleanest way.",
+  sampleIn:"2024  (or 1900, 2000, 2023)",
+  sampleOut:"2024 is a Leap Year.  (or 1900 is Not a Leap Year.)"
+});
+QUESTIONS.push({
+  id:"a2q9", assignment:2, number:9, topic:"logical", topicLabel:"Logical Operators",
+  title:"Job Eligibility Checker",
+  marks:null,
+  question:"9. Check if a candidate is eligible for a JavaScript developer job. Conditions:\n\n   • Age between 18 and 30 (inclusive)\n   • At least 1 year of experience\n   • Must know JavaScript\n\n   Reject negative age or experience. Take age, experience (years), and JavaScript knowledge (yes/no) from the user.\n\n   Sample Input: 25, 2, yes\n   Expected Output: Congratulations! You are eligible for the job.",
+  code:"// Take candidate details\nvar age = +prompt(\"Enter your age:\");\nvar experience = +prompt(\"Enter your experience (in years):\");\nvar knowsJS = prompt(\"Do you know JavaScript? (yes/no):\");\n\n// Validate inputs\nif (age < 0 || experience < 0) {\n    alert(\"Invalid input. Age and experience cannot be negative.\");\n} else if (age >= 18 && age <= 30 && experience >= 1 && knowsJS.toLowerCase() === \"yes\") {\n    alert(\"Congratulations! You are eligible for the job.\");\n} else {\n    alert(\"Sorry, you are not eligible for the job.\");\n}",
+  explain:"Negative age or experience is rejected first. The eligibility check uses <b>&amp;&amp;</b> to require ALL conditions: age in [18,30], experience ≥ 1, and JavaScript knowledge. <b>toLowerCase()</b> makes the yes/no check case-insensitive. The final else covers any unmet condition.",
+  sampleIn:"25, 2, yes  (or 17, 2, yes; or 25, 0, yes)",
+  sampleOut:"Congratulations! You are eligible for the job.  (or not eligible)"
+});
+QUESTIONS.push({
+  id:"a2q10", assignment:2, number:10, topic:"logical", topicLabel:"Logical Operators",
+  title:"ATM Withdrawal System",
+  marks:null,
+  question:"10. Simulate an ATM withdrawal. Initial balance is Rs. 25,000 and PIN is 1234. Validate:\n\n    • Correct PIN\n    • Withdrawal amount must be positive\n    • Amount must not exceed available balance\n    • Amount must be a multiple of Rs. 500\n\n    Display appropriate messages and the remaining balance on success.\n\n    Sample Input: PIN 1234, Amount 5000\n    Expected Output:\n    Withdrawal successful!\n    Remaining Balance: 20000",
+  code:"// Initial ATM state\nvar balance = 25000;\nvar correctPin = \"1234\";\n\n// Take PIN and amount from user\nvar enteredPin = prompt(\"Enter your PIN:\");\nvar amount = +prompt(\"Enter amount to withdraw:\");\n\n// Validate all conditions\nif (enteredPin !== correctPin) {\n    alert(\"Incorrect PIN.\");\n} else if (amount <= 0) {\n    alert(\"Invalid amount. Please enter a positive value.\");\n} else if (amount > balance) {\n    alert(\"Insufficient balance. Your balance is Rs. \" + balance);\n} else if (amount % 500 !== 0) {\n    alert(\"Amount must be a multiple of Rs. 500.\");\n} else {\n    balance = balance - amount;\n    alert(\"Withdrawal successful!\\nRemaining Balance: \" + balance);\n}",
+  explain:"Each validation is checked in order: PIN, then positive amount, then sufficient balance, then multiples of 500. Only when all pass does the withdrawal happen and the balance update. Checking PIN first protects the account; checking amount conditions before dispensing prevents invalid transactions.",
+  sampleIn:"PIN 1234, Amount 5000  (or wrong PIN, or 5500, or 30000)",
+  sampleOut:"Withdrawal successful!\nRemaining Balance: 20000"
+});
+QUESTIONS.push({
+  id:"a2q11", assignment:2, number:11, topic:"conditions", topicLabel:"Calculations",
+  title:"Electricity Bill Calculator",
+  marks:null,
+  question:"11. Take the number of electricity units consumed. Calculate the bill using ONE rate for all consumed units based on the total consumption bracket:\n\n    • 1–100 units: Rs. 10 per unit\n    • 101–200 units: Rs. 15 per unit\n    • 201–300 units: Rs. 20 per unit\n    • Above 300 units: Rs. 25 per unit\n\n    Add Rs. 150 service charges and a tax of 5% on the electricity charges. Reject negative or non-numeric units.\n\n    Sample Input: 150\n    Expected Output:\n    Electricity Charges: 2250\n    Tax (5%): 112.5\n    Service Charges: 150\n    Total Bill: 2512.5",
+  code:"// Take units consumed\nvar units = +prompt(\"Enter units consumed:\");\n\n// Validate input\nif (isNaN(units) || units < 0) {\n    alert(\"Invalid input. Please enter a valid positive number.\");\n} else {\n    // Determine rate based on total consumption bracket\n    var rate;\n    if (units <= 100) {\n        rate = 10;\n    } else if (units <= 200) {\n        rate = 15;\n    } else if (units <= 300) {\n        rate = 20;\n    } else {\n        rate = 25;\n    }\n\n    // Calculate bill components\n    var electricityCharges = units * rate;\n    var tax = (electricityCharges * 5) / 100;   // 5% of electricity charges\n    var serviceCharges = 150;\n    var totalBill = electricityCharges + tax + serviceCharges;\n\n    alert(\"Electricity Charges: \" + electricityCharges +\n          \"\\nTax (5%): \" + tax +\n          \"\\nService Charges: \" + serviceCharges +\n          \"\\nTotal Bill: \" + totalBill);\n}",
+  explain:"A <b>single rate</b> applies to ALL units based on the total consumption bracket (not a slab system). For 150 units, the bracket is 101–200 so the rate is Rs. 15 → 150 × 15 = 2250. Tax is <b>5% of electricity charges</b>, plus a flat Rs. 150 service charge. <b>isNaN</b> rejects non-numeric input.",
+  sampleIn:"150  (or 250, 350, -10)",
+  sampleOut:"Electricity Charges: 2250\nTax (5%): 112.5\nService Charges: 150\nTotal Bill: 2512.5"
+});
+QUESTIONS.push({
+  id:"a2q12", assignment:2, number:12, topic:"conditions", topicLabel:"Conditions",
+  title:"Student Result System",
+  marks:null,
+  question:"12. Take marks for 5 subjects (English, Mathematics, Science, Computer, Urdu) — each out of 100. Validate all marks (0–100). The overall result is FAIL if any subject is below 40. Calculate the percentage and grade:\n\n    • 90+: A+\n    • 80–89: A\n    • 70–79: B\n    • 60–69: C\n    • 50–59: D\n    • Below 50: Fail\n\n    Sample Input: 75, 82, 60, 90, 55\n    Expected Output:\n    Total: 362 / 500\n    Percentage: 72.4%\n    Grade: B\n    Result: PASS",
+  code:"// Take marks of 5 subjects\nvar english = +prompt(\"Enter English marks (out of 100):\");\nvar maths = +prompt(\"Enter Mathematics marks (out of 100):\");\nvar science = +prompt(\"Enter Science marks (out of 100):\");\nvar computer = +prompt(\"Enter Computer marks (out of 100):\");\nvar urdu = +prompt(\"Enter Urdu marks (out of 100):\");\n\n// Validate all marks (must be 0-100)\nif (english < 0 || english > 100 || maths < 0 || maths > 100 ||\n    science < 0 || science > 100 || computer < 0 || computer > 100 ||\n    urdu < 0 || urdu > 100) {\n    alert(\"Invalid marks entered. Each subject must be between 0 and 100.\");\n} else {\n    var total = english + maths + science + computer + urdu;\n    var percentage = (total / 500) * 100;\n\n    // Determine grade from percentage\n    var grade;\n    if (percentage >= 90) { grade = \"A+\"; }\n    else if (percentage >= 80) { grade = \"A\"; }\n    else if (percentage >= 70) { grade = \"B\"; }\n    else if (percentage >= 60) { grade = \"C\"; }\n    else if (percentage >= 50) { grade = \"D\"; }\n    else { grade = \"Fail\"; }\n\n    // Overall result: FAIL if any subject below 40\n    var result;\n    if (english < 40 || maths < 40 || science < 40 || computer < 40 || urdu < 40) {\n        result = \"FAIL\";\n    } else {\n        result = \"PASS\";\n    }\n\n    alert(\"Total: \" + total + \" / 500\" +\n          \"\\nPercentage: \" + percentage + \"%\" +\n          \"\\nGrade: \" + grade +\n          \"\\nResult: \" + result);\n}",
+  explain:"Marks are validated (0–100) using chained <b>||</b>. The percentage is total ÷ 500 × 100. The grade comes from the percentage brackets. <b>Critically</b>, the overall result is FAIL if <b>any single subject is below 40</b>, even if the percentage is high. This pass/fail check is separate from the grade.",
+  sampleIn:"75, 82, 60, 90, 55  (or 95, 88, 30, 70, 60 → FAIL)",
+  sampleOut:"Total: 362 / 500\nPercentage: 72.4%\nGrade: B\nResult: PASS"
+});
+QUESTIONS.push({
+  id:"a2q13", assignment:2, number:13, topic:"conditions", topicLabel:"Conditions",
+  title:"Traffic Signal System",
+  marks:null,
+  question:"13. Take a traffic signal color from the user (red, yellow, or green). Display the corresponding action. Accept both uppercase and lowercase input.\n\n   • Red → Stop\n   • Yellow → Slow down / Get ready\n   • Green → Go\n\n   Sample Input: Red\n   Expected Output: Stop",
+  code:"// Take traffic signal color\nvar color = prompt(\"Enter traffic signal color (red/yellow/green):\");\nvar signal = color.toLowerCase(); // accept any case\n\n// Determine action\nif (signal === \"red\") {\n    alert(\"Stop\");\n} else if (signal === \"yellow\") {\n    alert(\"Slow down / Get ready\");\n} else if (signal === \"green\") {\n    alert(\"Go\");\n} else {\n    alert(\"Invalid color. Please enter red, yellow, or green.\");\n}",
+  explain:"<b>toLowerCase()</b> normalises the input so \"Red\", \"RED\", and \"red\" all match. Each color maps to one action. An <b>else</b> branch handles invalid colors gracefully. Using strict equality (===) after lowercasing keeps the comparison clean and predictable.",
+  sampleIn:"Red  (or YELLOW, or green)",
+  sampleOut:"Stop  (or Slow down / Get ready, or Go)"
+});
+QUESTIONS.push({
+  id:"a2q14", assignment:2, number:14, topic:"conditions", topicLabel:"Conditions",
+  title:"Cinema Ticket Booking System",
+  marks:null,
+  question:"14. Calculate the cinema ticket price based on age and day type:\n\n    • Age below 5: Free (Rs. 0)\n    • Age 5–12: Rs. 300\n    • Age 13–60: Rs. 500\n    • Age above 60: Rs. 250 (senior discount)\n\n    Add a Rs. 100 weekend surcharge to PAID tickets only. Children below 5 pay no surcharge.\n\n    Take age and day type (weekday/weekend) from the user.\n\n    Sample Input: 25, weekend\n    Expected Output:\n    Ticket Price: 500\n    Weekend Surcharge: 100\n    Total: 600",
+  code:"// Take age and day type\nvar age = +prompt(\"Enter your age:\");\nvar day = prompt(\"Enter day type (weekday/weekend):\").toLowerCase();\n\n// Determine base ticket price by age\nvar ticketPrice;\nif (age < 5) {\n    ticketPrice = 0;\n} else if (age <= 12) {\n    ticketPrice = 300;\n} else if (age <= 60) {\n ticketPrice = 500;\n} else {\n    ticketPrice = 250; // senior discount\n}\n\n// Weekend surcharge applies to PAID tickets only\nvar surcharge = 0;\nif (day === \"weekend\" && ticketPrice > 0) {\n    surcharge = 100;\n}\n\nvar total = ticketPrice + surcharge;\n\nalert(\"Ticket Price: \" + ticketPrice +\n      \"\\nWeekend Surcharge: \" + surcharge +\n      \"\\nTotal: \" + total);",
+  explain:"The base price is set by age brackets. The weekend surcharge is added <b>only if</b> it is a weekend <b>AND</b> the ticket is paid (<b>ticketPrice &gt; 0</b>) — so children under 5 (free) never pay the surcharge. The two conditions combined with <b>&amp;&amp;</b> enforce the rule cleanly.",
+  sampleIn:"25, weekend  (or 3, weekend; or 65, weekday)",
+  sampleOut:"Ticket Price: 500\nWeekend Surcharge: 100\nTotal: 600"
+});
+QUESTIONS.push({
+  id:"a2q15", assignment:2, number:15, topic:"logical", topicLabel:"Logical Operators",
+  title:"Employee Salary & Bonus System",
+  marks:null,
+  question:"15. Take an employee's basic salary and years of service. Calculate:\n\n    Bonus based on service (on basic salary):\n    • 5+ years: 20% bonus\n    • 3–4 years: 10% bonus\n    • Below 3 years: 5% bonus\n\n    Tax based on salary:\n    • Salary above 50000: 10% tax\n    • Salary 30000–50000: 5% tax\n    • Below 30000: no tax\n\n    Final Salary = Basic Salary + Bonus − Tax\n\n    Reject negative salary or service years.\n\n    Sample Input: 60000, 6\n    Expected Output:\n    Basic Salary: 60000\n    Bonus (20%): 12000\n    Tax (10%): 6000\n    Final Salary: 66000",
+  code:"// Take basic salary and service years\nvar basicSalary = +prompt(\"Enter basic salary:\");\nvar serviceYears = +prompt(\"Enter years of service:\");\n\n// Reject negative inputs\nif (basicSalary < 0 || serviceYears < 0) {\n    alert(\"Invalid input. Salary and service years cannot be negative.\");\n} else {\n    // Determine bonus percentage by service\n    var bonusPercent;\n    if (serviceYears >= 5) {\n        bonusPercent = 20;\n    } else if (serviceYears >= 3) {\n        bonusPercent = 10;\n    } else {\n        bonusPercent = 5;\n    }\n\n    // Determine tax percentage by salary\n    var taxPercent;\n    if (basicSalary > 50000) {\n        taxPercent = 10;\n    } else if (basicSalary >= 30000) {\n        taxPercent = 5;\n    } else {\n        taxPercent = 0;\n    }\n\n    // Calculate amounts\n    var bonus = (basicSalary * bonusPercent) / 100;\n    var tax = (basicSalary * taxPercent) / 100;\n    var finalSalary = basicSalary + bonus - tax;\n\n    alert(\"Basic Salary: \" + basicSalary +\n          \"\\nBonus (\" + bonusPercent + \"%): \" + bonus +\n          \"\\nTax (\" + taxPercent + \"%): \" + tax +\n          \"\\nFinal Salary: \" + finalSalary);\n}",
+  explain:"Negative salary or service is rejected first. Bonus % depends on <b>service years</b>; tax % depends on <b>salary</b> — two independent bracket checks. Final salary = basic + bonus − tax. For 60000 salary & 6 years: bonus = 20% = 12000, tax = 10% = 6000, final = 60000 + 12000 − 6000 = 66000.",
+  sampleIn:"60000, 6  (or 25000, 2; or 45000, 4)",
+  sampleOut:"Basic Salary: 60000\nBonus (20%): 12000\nTax (10%): 6000\nFinal Salary: 66000"
+});
+
+/* ---------- END OF DATA ---------- */
+window.__QUESTIONS__ = QUESTIONS;
+</script>
+
+<script>
+/* ============================================================
+   RENDERING + INTERACTIONS + 3D SCENE
+   ============================================================ */
+(function(){
+"use strict";
+
+var QUESTIONS = window.__QUESTIONS__ || [];
+var state = { filter:"all", query:"" };
+
+/* ---------- syntax highlight (lightweight) ---------- */
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function highlight(code){
+  var s = esc(code);
+  // strings
+  s = s.replace(/("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g,'<span class="tok-str">$1</span>');
+  // comments
+  s = s.replace(/(\/\/[^\n]*)/g,'<span class="tok-com">$1</span>');
+  // keywords
+  s = s.replace(/\b(var|let|const|if|else|for|while|function|return|new|typeof|true|false|null|undefined|prompt|alert|console|log|isNaN|toLowerCase)\b/g,'<span class="tok-kw">$1</span>');
+  // numbers
+  s = s.replace(/\b(\d+(?:\.\d+)?)\b/g,'<span class="tok-num">$1</span>');
+  return s;
+}
+
+/* ---------- card builder ---------- */
+function cardHTML(q){
+  var aBadge = q.assignment===1
+    ? '<span class="badge a1">Assignment 01</span>'
+    : '<span class="badge a2">Assignment 02</span>';
+  var marksBadge = q.marks ? '<span class="badge marks">'+q.marks+' Marks</span>' : '';
+  var topicBadge = '<span class="badge topic">'+q.topicLabel+'</span>';
+  var numBadge = '<span class="badge topic">Q'+q.number+'</span>';
+
+  var sampleBlock = '';
+  if(q.sampleIn || q.sampleOut){
+    var inBox = q.sampleIn ? '<div class="sample-box"><div class="lbl">Sample Input</div><div class="val">'+esc(q.sampleIn)+'</div></div>' : '';
+    var outBox = q.sampleOut ? '<div class="sample-box"><div class="lbl">Expected Output</div><div class="val">'+esc(q.sampleOut)+'</div></div>' : '';
+    sampleBlock = '<div class="sample">'+inBox+outBox+'</div>';
+  }
+
+  return ''+
+  '<article class="qcard reveal" data-tilt data-id="'+q.id+'" data-assignment="'+q.assignment+'" data-topic="'+q.topic+'">'+
+    '<div class="qcard-head">'+
+      '<div class="qcard-meta">'+aBadge+numBadge+topicBadge+marksBadge+'</div>'+
+      '<h3>'+q.title+'</h3>'+
+    '</div>'+
+    '<div class="qcard-body">'+
+      '<div class="qstatement">'+q.question.replace(/\n/g,'<br>')+'</div>'+
+      '<button class="toggle-btn" data-toggle="answer" aria-expanded="false">'+
+        '<span class="label">Show Answer &amp; Solution</span> <span class="arr">▾</span>'+
+      '</button>'+
+      '<div class="answer-wrap">'+
+        '<div class="answer-inner">'+
+          '<div class="answer-label">Answer / JavaScript Solution</div>'+
+          '<div class="code-block">'+
+            '<div class="code-top">'+
+              '<div class="code-dots"><span></span><span></span><span></span></div>'+
+              '<div class="code-lang">javascript</div>'+
+              '<button class="copy-btn" data-copy="'+q.id+'" aria-label="Copy code">'+
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>'+
+                '<span>Copy</span>'+
+              '</button>'+
+            '</div>'+
+            '<pre><code id="code-'+q.id+'">'+highlight(q.code)+'</code></pre>'+
+          '</div>'+
+          '<p class="explain">'+q.explain+'</p>'+
+          sampleBlock+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+  '</article>';
+}
+
+/* ---------- render all containers ---------- */
+function renderAll(){
+  var a1 = document.getElementById('cards-a1');
+  var a2 = document.getElementById('cards-a2');
+  var all = document.getElementById('cards-all');
+  a1.innerHTML = QUESTIONS.filter(function(q){return q.assignment===1}).map(cardHTML).join('');
+  a2.innerHTML = QUESTIONS.filter(function(q){return q.assignment===2}).map(cardHTML).join('');
+  applyFilter();
+  bindCardEvents();
+  observeReveal();
+}
+
+/* ---------- filter + search ---------- */
+function matchesFilter(q, filter){
+  if(filter==="all") return true;
+  if(filter==="a1") return q.assignment===1;
+  if(filter==="a2") return q.assignment===2;
+  return q.topic===filter;
+}
+function matchesQuery(q, query){
+  if(!query) return true;
+  query = query.toLowerCase();
+  return (q.title+' '+q.question+' '+q.topicLabel).toLowerCase().indexOf(query) !== -1;
+}
+function applyFilter(){
+  var filter = state.filter;
+  var query = state.query.trim();
+  var all = document.getElementById('cards-all');
+  var cards = all.querySelectorAll('.qcard');
+  var visible = 0;
+  cards.forEach(function(c){
+    var q = QUESTIONS.filter(function(x){return x.id===c.dataset.id})[0];
+    var show = matchesFilter(q,filter) && matchesQuery(q,query);
+    c.style.display = show ? '' : 'none';
+    if(show) visible++;
+  });
+  // also filter assignment sections when searching
+  ['cards-a1','cards-a2'].forEach(function(id){
+    var sec = document.getElementById(id);
+    sec.querySelectorAll('.qcard').forEach(function(c){
+      var q = QUESTIONS.filter(function(x){return x.id===c.dataset.id})[0];
+      c.style.display = matchesQuery(q,query) ? '' : 'none';
+    });
+  });
+  var empty = document.getElementById('emptyState');
+  empty.style.display = (filter!=='all' || query) && visible===0 ? 'block' : 'none';
+  var rc = document.getElementById('resultCount');
+  rc.textContent = query || filter!=='all' ? visible+' of '+QUESTIONS.length+' questions shown' : '';
+  // re-trigger reveal for newly shown
+  observeReveal();
+}
+
+/* ---------- bind card events (delegation) ---------- */
+function bindCardEvents(){
+  document.querySelectorAll('.qcard').forEach(function(card){
+    // toggle answer
+    var btn = card.querySelector('[data-toggle="answer"]');
+    var wrap = card.querySelector('.answer-wrap');
+    if(btn && wrap){
+      btn.addEventListener('click', function(){
+        var open = wrap.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open);
+        btn.querySelector('.label').textContent = open ? 'Hide Answer & Solution' : 'Show Answer & Solution';
+      });
+    }
+    // copy code
+    var copyBtn = card.querySelector('.copy-btn');
+    if(copyBtn){
+      copyBtn.addEventListener('click', function(){
+        var q = QUESTIONS.filter(function(x){return x.id===card.dataset.id})[0];
+        copyText(q.code);
+        copyBtn.classList.add('copied');
+        copyBtn.querySelector('span').textContent = 'Copied!';
+        showToast('Code copied to clipboard');
+        setTimeout(function(){
+          copyBtn.classList.remove('copied');
+          copyBtn.querySelector('span').textContent = 'Copy';
+        },1800);
+      });
+    }
+    // 3D tilt
+    if(card.dataset.tilt!==undefined && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth>760){
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX-r.left)/r.width;
+        var y = (e.clientY-r.top)/r.height;
+        var rx = (y-0.5)*-6;
+        var ry = (x-0.5)*8;
+        card.style.transform = 'perspective(900px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-4px)';
+        card.style.setProperty('--mx',(x*100)+'%');
+        card.style.setProperty('--my',(y*100)+'%');
+      });
+      card.addEventListener('mouseleave', function(){
+        card.style.transform = '';
+      });
+    }
+  });
+  // also assignment cards tilt
+  document.querySelectorAll('.acard[data-tilt]').forEach(function(card){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth<=760) return;
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX-r.left)/r.width;
+      var y = (e.clientY-r.top)/r.height;
+      card.style.transform = 'perspective(1000px) rotateX('+(y-0.5)*-5+'deg) rotateY('+(x-0.5)*7+'deg) translateY(-6px)';
+    });
+    card.addEventListener('mouseleave', function(){card.style.transform='';});
+  });
+}
+
+/* ---------- copy to clipboard (with fallback) ---------- */
+function copyText(text){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).catch(function(){legacyCopy(text);});
+  } else {
+    legacyCopy(text);
+  }
+}
+function legacyCopy(text){
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);
+  ta.select();
+  try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* ---------- toast ---------- */
+var toastTimer;
+function showToast(msg){
+  var t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){t.classList.remove('show');},2200);
+}
+
+/* ---------- reveal on scroll ---------- */
+var io;
+function observeReveal(){
+  if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+    return;
+  }
+  if(!io){
+    io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+      });
+    },{threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  }
+  document.querySelectorAll('.reveal:not(.in)').forEach(function(el){io.observe(el);});
+}
+
+/* ---------- nav, mobile menu, smooth scroll, back-to-top, progress ---------- */
+function initNav(){
+  var nav = document.getElementById('nav');
+  var navLinks = document.getElementById('navLinks');
+  var toggle = document.getElementById('navToggle');
+  toggle.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('mobile');
+    toggle.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      navLinks.classList.remove('mobile');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+    });
+  });
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('scrolled', window.scrollY>30);
+    // back to top
+    var bt = document.getElementById('backTop');
+    bt.classList.toggle('show', window.scrollY>500);
+    // progress
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    var p = h>0 ? (window.scrollY/h)*100 : 0;
+    document.getElementById('progressBar').style.width = p+'%';
+    // active link
+    var sections = ['home','assignment-01','assignment-02','all','about'];
+    var cur = 'home';
+    sections.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.getBoundingClientRect().top <= 120) cur = id;
+    });
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href')==='#'+cur);
+    });
+  },{passive:true});
+  document.getElementById('backTop').addEventListener('click', function(){
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  // keyboard: Escape closes mobile menu
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape'){navLinks.classList.remove('mobile');toggle.classList.remove('open');}
+  });
+}
+
+/* ---------- search + chips ---------- */
+function initSearch(){
+  var search = document.getElementById('searchInput');
+  var navSearch = document.getElementById('navSearch');
+  function setQuery(v){
+    state.query = v;
+    if(search && search.value!==v) search.value = v;
+    if(navSearch && navSearch.value!==v) navSearch.value = v;
+    applyFilter();
+    if(v){
+      var all = document.getElementById('all');
+      var top = all.getBoundingClientRect().top;
+      if(top>200){ all.scrollIntoView({behavior:'smooth'}); }
+    }
+  }
+  if(search) search.addEventListener('input', function(){setQuery(search.value);});
+  if(navSearch) navSearch.addEventListener('input', function(){setQuery(navSearch.value);});
+  var chips = document.querySelectorAll('.chip');
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      chips.forEach(function(x){x.classList.remove('active');});
+      c.classList.add('active');
+      state.filter = c.dataset.filter;
+      applyFilter();
+      var all = document.getElementById('all');
+      all.scrollIntoView({behavior:'smooth'});
+    });
+  });
+}
+window.clearAll = function(){
+  state.filter='all';state.query='';
+  document.getElementById('searchInput').value='';
+  var ns=document.getElementById('navSearch'); if(ns) ns.value='';
+  document.querySelectorAll('.chip').forEach(function(c){c.classList.toggle('active',c.dataset.filter==='all');});
+  applyFilter();
+};
+
+/* ============================================================
+   THREE.JS 3D SCENE — gold particles + rotating geometry
+   ============================================================ */
+function init3D(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){return;}
+  if(typeof THREE==='undefined'){
+    // graceful fallback — CSS background already present
+    return;
+  }
+  var canvas = document.getElementById('bg-canvas');
+  var renderer;
+  try{
+    renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:true});
+  }catch(e){return;}
+  var W = window.innerWidth, H = window.innerHeight;
+  renderer.setSize(W,H);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+
+  var scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x070707, 0.035);
+  var camera = new THREE.PerspectiveCamera(60, W/H, 0.1, 1000);
+  camera.position.z = 60;
+
+  /* ----- gold particles ----- */
+  var pCount = window.innerWidth<760 ? 600 : 1300;
+  var positions = new Float32Array(pCount*3);
+  var sizes = new Float32Array(pCount);
+  for(var i=0;i<pCount;i++){
+    positions[i*3]   = (Math.random()-0.5)*220;
+    positions[i*3+1] = (Math.random()-0.5)*160;
+    positions[i*3+2] = (Math.random()-0.5)*160;
+    sizes[i] = Math.random()*1.6+0.4;
+  }
+  var pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(positions,3));
+  var pMat = new THREE.PointsMaterial({
+    color:0xD4AF37, size:1.4, transparent:true, opacity:0.8,
+    blending:THREE.AdditiveBlending, depthWrite:false, sizeAttenuation:true
+  });
+  var particles = new THREE.Points(pGeo, pMat);
+  scene.add(particles);
+
+  /* ----- rotating wireframe icosahedron ----- */
+  var icoGeo = new THREE.IcosahedronGeometry(14, 1);
+  var icoMat = new THREE.MeshBasicMaterial({color:0xD4AF37, wireframe:true, transparent:true, opacity:0.18});
+  var ico = new THREE.Mesh(icoGeo, icoMat);
+  ico.position.set(40, 12, -20);
+  scene.add(ico);
+
+  /* ----- rotating torus ring ----- */
+  var torusGeo = new THREE.TorusGeometry(9, 0.4, 16, 80);
+  var torusMat = new THREE.MeshBasicMaterial({color:0xF3D98B, transparent:true, opacity:0.35});
+  var torus = new THREE.Mesh(torusGeo, torusMat);
+  torus.position.set(-45, -10, -25);
+  scene.add(torus);
+
+  var torus2 = new THREE.Mesh(new THREE.TorusGeometry(5,0.25,12,60), new THREE.MeshBasicMaterial({color:0x073D32, transparent:true, opacity:0.5}));
+  torus2.position.set(-45,-10,-25);
+  scene.add(torus2);
+
+  /* ----- ambient gold light glow sprite (subtle) ----- */
+  var glowGeo = new THREE.SphereGeometry(3, 16, 16);
+  var glowMat = new THREE.MeshBasicMaterial({color:0xF3D98B, transparent:true, opacity:0.12});
+  var glow = new THREE.Mesh(glowGeo, glowMat);
+  glow.position.set(40,12,-15);
+  scene.add(glow);
+
+  /* ----- mouse parallax ----- */
+  var mx=0, my=0, tx=0, ty=0;
+  window.addEventListener('mousemove', function(e){
+    mx = (e.clientX/window.innerWidth - 0.5);
+    my = (e.clientY/window.innerHeight - 0.5);
+  },{passive:true});
+
+  /* ----- animation loop ----- */
+  var running = true;
+  var clock = new THREE.Clock();
+  function animate(){
+    if(!running) return;
+    requestAnimationFrame(animate);
+    var t = clock.getElapsedTime();
+    particles.rotation.y = t*0.02;
+    particles.rotation.x = t*0.01;
+    ico.rotation.x = t*0.15;
+    ico.rotation.y = t*0.2;
+    torus.rotation.x = t*0.25;
+    torus.rotation.y = t*0.15;
+    torus2.rotation.x = -t*0.3;
+    torus2.rotation.z = t*0.2;
+    // parallax
+    tx += (mx - tx)*0.04;
+    ty += (my - ty)*0.04;
+    camera.position.x = tx*12;
+    camera.position.y = -ty*8;
+    camera.lookAt(scene.position);
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  /* ----- resize ----- */
+  window.addEventListener('resize', function(){
+    W = window.innerWidth; H = window.innerHeight;
+    camera.aspect = W/H;
+    camera.updateProjectionMatrix();
+    renderer.setSize(W,H);
+  });
+
+  /* ----- pause when tab hidden (perf) ----- */
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden){running=false;}
+    else if(!running){running=true;animate();}
+  });
+}
+
+/* ============================================================
+   HERO 3D — floating golden JS-inspired object
+   ============================================================ */
+function initHero3D(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce || typeof THREE==='undefined') return;
+  var canvas = document.getElementById('hero-canvas');
+  if(!canvas) return;
+  var renderer;
+  try{ renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:true}); }
+  catch(e){ return; }
+  var W = canvas.clientWidth || 400, H = canvas.clientHeight || 400;
+  renderer.setSize(W,H,false);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(50, W/H, 0.1, 100);
+  camera.position.z = 8;
+
+  // golden knot
+  var geo = new THREE.TorusKnotGeometry(2.2, 0.55, 120, 18);
+  var mat = new THREE.MeshStandardMaterial({
+    color:0xD4AF37, metalness:0.9, roughness:0.25,
+    emissive:0x3a2c08, emissiveIntensity:0.4
+  });
+  var knot = new THREE.Mesh(geo, mat);
+  scene.add(knot);
+
+  // small particles around knot
+  var pPos = new Float32Array(300*3);
+  for(var i=0;i<300;i++){
+    var r = 4+Math.random()*3;
+    var a = Math.random()*Math.PI*2;
+    var b = Math.random()*Math.PI;
+    pPos[i*3]   = r*Math.sin(b)*Math.cos(a);
+    pPos[i*3+1] = r*Math.sin(b)*Math.sin(a);
+    pPos[i*3+2] = r*Math.cos(b);
+  }
+  var pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos,3));
+  var pMat = new THREE.PointsMaterial({color:0xF3D98B, size:0.06, transparent:true, opacity:0.8, blending:THREE.AdditiveBlending, depthWrite:false});
+  var pts = new THREE.Points(pGeo, pMat);
+  scene.add(pts);
+
+  // lights
+  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+  var l1 = new THREE.PointLight(0xF3D98B, 1.6, 50); l1.position.set(6,6,6); scene.add(l1);
+  var l2 = new THREE.PointLight(0xD4AF37, 1.0, 50); l2.position.set(-6,-4,4); scene.add(l2);
+
+  var mx=0,my=0,tx=0,ty=0;
+  var hero = document.querySelector('.hero-visual');
+  if(hero){
+    hero.addEventListener('mousemove', function(e){
+      var r = hero.getBoundingClientRect();
+      mx = (e.clientX-r.left)/r.width - 0.5;
+      my = (e.clientY-r.top)/r.height - 0.5;
+    },{passive:true});
+  }
+  var clock = new THREE.Clock();
+  function loop(){
+    requestAnimationFrame(loop);
+    var t = clock.getElapsedTime();
+    knot.rotation.x = t*0.3;
+    knot.rotation.y = t*0.4;
+    pts.rotation.y = -t*0.1;
+    tx += (mx-tx)*0.05; ty += (my-ty)*0.05;
+    camera.position.x = tx*3;
+    camera.position.y = -ty*3;
+    camera.lookAt(0,0,0);
+    renderer.render(scene,camera);
+  }
+  loop();
+  window.addEventListener('resize', function(){
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    camera.aspect = W/H; camera.updateProjectionMatrix();
+    renderer.setSize(W,H,false);
+  });
+}
+
+/* ---------- init ---------- */
+function init(){
+  renderAll();
+  initNav();
+  initSearch();
+  observeReveal();
+  init3D();
+  initHero3D();
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded', init);
+} else { init(); }
+
+})();
+</script>
+
+</body>
+</html>
